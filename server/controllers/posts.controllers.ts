@@ -1,3 +1,7 @@
+'use strict';
+
+const db = require('../models/database.ts');
+
 exports.getAll = async (req:any, res:any) => {
   try {
     console.log('gotted');
