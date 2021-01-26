@@ -1,11 +1,11 @@
 import React from 'react';
+import TopicPage from './containers/topicPage';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <TopicPage/>
     </div>
   );
 }
