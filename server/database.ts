@@ -11,6 +11,4 @@ const sequelize = new Sequelize(
   },
 );
 
-sequelize.authenticate()
-  .then(()=>console.log('db connected'))
-  .catch((err:string)=>console.log(err));
+module.exports = sequelize;

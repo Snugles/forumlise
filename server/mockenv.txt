@@ -1,3 +1,0 @@
-PORT = customPort
-USERNAME = database username
-PASS = database user password

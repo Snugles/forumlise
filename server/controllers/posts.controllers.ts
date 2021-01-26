@@ -1,12 +1,15 @@
 'use strict';
 
-const db = require('../models/database.ts');
+const PostModel = require('../models/Post.models.ts');
 
 exports.getAll = async (req:any, res:any) => {
   try {
-    console.log('gotted');
-    res.status(200);
-    res.send('data');
+    PostModel.findAll()
+      .then((data:Array<any>)=>{
+        console.log(data);
+        res.send(data);
+        res.status(200);
+      });
   } catch (e) {
     console.error('e', e);
     res.sendStatus(500);
