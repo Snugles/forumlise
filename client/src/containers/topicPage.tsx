@@ -37,8 +37,10 @@ function TopicPage() {
       {topicData.length?
         topicData.map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
         <p>No replies</p>}
-      <form onSubmit = {handleSubmit}>
-        <input type='text' id='myText' value={replyMessage} onChange={handleChange}/>
+      <form onSubmit = {handleSubmit} className='topicPageForm'>
+        <label>Reply:</label>
+        <textarea rows={8} value={replyMessage} onChange={handleChange} className='topicPageInput'></textarea>
+        <input type="submit" value="Send Reply"/>
       </form>
     </div>
   );
