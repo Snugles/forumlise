@@ -1,31 +1,40 @@
 'use strict';
 
-const PostModel = require('../models/Post.models.ts');
+const Topic = require('../models').Topic;
+const Post = require('../models').Post;
 
 exports.getAll = async (_:any, res:any) => {
   try {
-    PostModel.findAll()
+    Topic.create(
+      {
+        content: 'content',
+        title: 'title',
+      })
+      .catch((e:string)=>console.error(e));
+    Post.findAll()
       .then((data:Array<any>)=>{
-        console.log(data);
         res.status(200);
         res.send(data);
       });
   } catch (e) {
-    console.error('e', e);
+    console.error(e);
     res.sendStatus(500);
   }
 };
 
 exports.postOne = async (req:any, res:any) => {
   try {
-    PostModel.create(req.body)
-      .then((data:Array<any>)=>{
-        console.log(data);
-        res.status(201);
-        res.send(data);
-      });
+    Topic.findOne({where: {id: 1}})
+      .then((topic:any)=>{
+        topic.createPost(req.body)
+          .then((data:Array<any>)=>{
+            res.status(201);
+            res.send(data);
+          });
+      })
+      .catch((e:string)=>console.error(e));
   } catch (e) {
-    console.error('e', e);
+    console.error(e);
     res.sendStatus(500);
   }
 };

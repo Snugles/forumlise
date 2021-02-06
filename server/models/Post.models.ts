@@ -1,15 +1,15 @@
 'use strict';
-
-const database = require('../database.ts');
-const Sqlize = require('sequelize');
-
-const Post = database.define('Post', {
-  content: {
-    type: Sqlize.STRING,
-  },
-  timestamp: {
-    type: Sqlize.DATE,
-  },
-});
-
-module.exports = Post;
+module.exports = (sequelize:any, DataTypes:any) => {
+  const Post = sequelize.define('Post', {
+    content: {
+      type: DataTypes.STRING,
+    },
+    TopicId: {
+      type: DataTypes.INTEGER,
+    },
+  }, {});
+  Post.associate = function(models:any) {
+    Post.belongsTo(models.Topic);
+  };
+  return Post;
+};
