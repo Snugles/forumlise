@@ -1,0 +1,21 @@
+.homepageTopicContainer{
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  margin: 5px;
+  margin-top: 0px;
+  background-color: rgb(134, 159, 230);
+}
+
+.homepageTopicTimestamp{
+  color:rgba(0, 0, 0, 0.555);
+  font-size: 12px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.homepageTopicContent{
+  font-size: 14px;
+  text-align: left;
+  margin: 5px;
+}

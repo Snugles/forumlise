@@ -1,12 +1,13 @@
 import React from 'react';
 import TopicPage from './containers/topicPage';
+import Home from './containers/Home';
 import './App.css';
 
 function App() {
 
   return (
     <div className="App">
-      <TopicPage/>
+      <Home/>
     </div>
   );
 }
