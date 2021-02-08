@@ -1,16 +1,10 @@
 'use strict';
 
-const Topic = require('../models').Topic;
+const Topics = require('../models').Topic;
 const Post = require('../models').Post;
 
 exports.getAll = async (_:any, res:any) => {
   try {
-    Topic.create(
-      {
-        content: 'content',
-        title: 'title',
-      })
-      .catch((e:string)=>console.error(e));
     Post.findAll()
       .then((data:Array<any>)=>{
         res.status(200);
@@ -24,7 +18,7 @@ exports.getAll = async (_:any, res:any) => {
 
 exports.postOne = async (req:any, res:any) => {
   try {
-    Topic.findOne({where: {id: 1}})
+    Topics.findOne({where: {id: 1}})
       .then((topic:any)=>{
         topic.createPost(req.body)
           .then((data:Array<any>)=>{
