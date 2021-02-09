@@ -6,25 +6,25 @@ import {RootState} from '../redux/reducers';
 import {useSelector, useDispatch} from 'react-redux';
 import {newTopic} from '../redux/actions/topicActions';
 
-function TopicPage() {
+function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
 
   const topicData = useSelector((state:RootState) => state.topic);
   const dispatch = useDispatch();
   useEffect(() => {
-    service.getTopic()
+    service.getTopic(match.params.id)
       .then((res:Array<Object>) => dispatch(newTopic(res)))
       .catch((e:string) => console.error(e));
   },[dispatch]);
 
   const handleChange = (e:any) => {
-    console.log(e);
     setReplyMessage(e.target.value);
   }
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    service.createPost({content:replyMessage})
+    service.createPost({content:replyMessage, TopicId:match.params.id})
+      .then((dunno:any)=>console.log(dunno))
       .catch((e:string) => console.error(e));
   }
 

@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import service from '../service';
 import HomePageTopic from '../components/homePageTopic'
 import './styles/Home.css';
-import logo from './images/forumliseLogo.png'; 
+import logo from './images/forumliseLogo.png';
+import {Link} from 'react-router-dom';
 
 function TopicPage() {
   const [topics, setTopics] = useState([{}]);
@@ -35,7 +36,10 @@ function TopicPage() {
         <img src={logo} alt="Forumlise Logo"/>
       </div>
       {Object.keys(topics[0]).length?
-        topics.map((topicData:any) => <HomePageTopic content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>):
+        topics.map((topicData:any) => 
+        <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>
+          <HomePageTopic content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
+        </Link>):
         <p>No Topics</p>}
       <div className='homeFormContainer'>
         <h1>Create new topic</h1>

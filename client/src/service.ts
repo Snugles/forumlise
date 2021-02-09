@@ -1,11 +1,11 @@
 const apiRequests = { 
-  getTopic: () => {
-    return fetch('http://localhost:3001/posts')
+  getTopic: (id:number) => {
+    return fetch(`http://localhost:3001/posts/${id}`)
       .then((results) =>results.json())
       .catch((e:string)=>console.error(e));
   },
   createPost: (post:any) => {
-    return fetch('http://localhost:3001/posts',{
+    return fetch(`http://localhost:3001/posts`,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(post)})
