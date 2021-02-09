@@ -9,11 +9,13 @@ import {newTopic} from '../redux/actions/topicActions';
 function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
 
-  const topicData = useSelector((state:RootState) => state.topic);
+  const topicData:Array<any> = useSelector((state:RootState) => state.topic);
   const dispatch = useDispatch();
   useEffect(() => {
     service.getTopic(match.params.id)
-      .then((res:Array<Object>) => dispatch(newTopic(res)))
+      .then((res:Array<any>) => {
+        dispatch(newTopic(res));
+      })
       .catch((e:string) => console.error(e));
   },[dispatch]);
 
@@ -24,18 +26,17 @@ function TopicPage({match}:any) {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     service.createPost({content:replyMessage, TopicId:match.params.id})
-      .then((dunno:any)=>console.log(dunno))
       .catch((e:string) => console.error(e));
   }
 
   return (
     <div>
       <div className='topicStarter'>
-        <h1>Title</h1>
-        <p>Starter content Starter content Starter content Starter content Starter content</p>
+        <h1>{topicData[0].title}</h1>
+        <p>{topicData[0].content}</p>
       </div>
-      {topicData.length?
-        topicData.map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
+      {topicData[1]&&topicData[1].length?
+        topicData[1].map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
         <p>No replies</p>}
       <form onSubmit = {handleSubmit} className='topicPageForm'>
         <label>Reply:</label>
