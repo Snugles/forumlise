@@ -3,9 +3,9 @@
 const Topics = require('../models').Topic;
 const Post = require('../models').Post;
 
-exports.getAll = async (_:any, res:any) => {
+exports.getAll = async (req:any, res:any) => {
   try {
-    Post.findAll()
+    Post.findAll({where: {TopicId: req.params.id}})
       .then((data:Array<any>)=>{
         res.status(200);
         res.send(data);
@@ -18,7 +18,8 @@ exports.getAll = async (_:any, res:any) => {
 
 exports.postOne = async (req:any, res:any) => {
   try {
-    Topics.findOne({where: {id: 1}})
+    console.log(req.body);
+    Topics.findOne({where: {id: 2}})
       .then((topic:any)=>{
         topic.createPost(req.body)
           .then((data:Array<any>)=>{

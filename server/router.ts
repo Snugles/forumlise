@@ -6,7 +6,7 @@ const topics = require('./controllers/topics.controllers.ts');
 
 routerMiddleWare.get('/topics', topics.getAll);
 routerMiddleWare.post('/topics', topics.postOne);
-routerMiddleWare.get('/posts', posts.getAll);
+routerMiddleWare.get('/posts/:id', posts.getAll);
 routerMiddleWare.post('/posts', posts.postOne);
 
 module.exports = routerMiddleWare;
