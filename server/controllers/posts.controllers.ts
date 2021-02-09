@@ -19,7 +19,7 @@ exports.getAll = async (req:any, res:any) => {
 exports.postOne = async (req:any, res:any) => {
   try {
     console.log(req.body);
-    Topics.findOne({where: {id: 2}})
+    Topics.findOne({where: {id: req.body.TopicId}})
       .then((topic:any)=>{
         topic.createPost(req.body)
           .then((data:Array<any>)=>{
