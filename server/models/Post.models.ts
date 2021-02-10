@@ -10,6 +10,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
   }, {});
   Post.associate = function(models:any) {
     Post.belongsTo(models.Topic);
+    Post.belongsTo(models.Account);
   };
   return Post;
 };

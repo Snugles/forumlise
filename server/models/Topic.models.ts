@@ -11,6 +11,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
     }, {});
   Topic.associate = function(models:any) {
     Topic.hasMany(models.Post);
+    Topic.belongsTo(models.Account);
   };
   return Topic;
 };

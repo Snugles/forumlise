@@ -5,6 +5,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const post = require('./Post.models');
 const topic = require('./Topic.models');
+const account = require('./Account.models');
 const database:any = {};
 
 const sqlize = new Sqlize(config.database,
@@ -17,6 +18,9 @@ let model = post(sqlize, Sqlize);
 database[model.name] = model;
 
 model = topic(sqlize, Sqlize);
+database[model.name] = model;
+
+model = account(sqlize, Sqlize);
 database[model.name] = model;
 
 Object.keys(database).forEach((modelName:any) => {

@@ -8,7 +8,7 @@ exports.getAll = async (req:any, res:any) => {
       .then((topic:any)=>{
         topic.getPosts()
           .then((data:Array<any>)=>{
-            res.status(201);
+            res.status(200);
             res.send([topic, data]);
           });
       })
