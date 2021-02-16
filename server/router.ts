@@ -5,8 +5,8 @@ const posts = require('./controllers/posts.controllers.ts');
 const topics = require('./controllers/topics.controllers.ts');
 const accounts = require('./controllers/accounts.controllers.ts');
 
-routerMiddleWare.get('/accounts', accounts.login);
-routerMiddleWare.post('/accounts', accounts.createOne);
+routerMiddleWare.post('/accounts', accounts.login);
+routerMiddleWare.post('/accounts/register', accounts.createOne);
 routerMiddleWare.get('/topics', topics.getAll);
 routerMiddleWare.post('/topics', topics.postOne);
 routerMiddleWare.get('/posts/:id', posts.getAll);

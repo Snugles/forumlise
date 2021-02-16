@@ -8,10 +8,10 @@ exports.login = async (req:any, res:any) => {
       .then((account:any)=>{
         if (req.body.password===account.password) {
           res.status(200);
-          res.send('recieved');
+          res.send({accepted: true, id: account.id});
         } else {
           res.status(200);
-          res.send('denied');
+          res.send({accepted: false});
         }
       });
   } catch (e) {
