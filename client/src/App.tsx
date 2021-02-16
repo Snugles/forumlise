@@ -1,7 +1,8 @@
 import React from 'react';
 import TopicPage from './containers/topicPage';
 import Home from './containers/Home';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './containers/Login';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
       <Router>
         <Route path="/" exact component={Home}/>
-        <Route path="/topic/:id" component={TopicPage}/>
+        <Route path="/topic/:id" exact component={TopicPage}/>
+        <Route path="/login" component={Login}/>
       </Router>
     </div>
   );

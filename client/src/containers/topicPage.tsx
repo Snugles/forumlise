@@ -9,6 +9,7 @@ import {newTopic} from '../redux/actions/topicActions';
 function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
 
+  const loginData:any = useSelector((state:RootState) => state.login);
   const topicData:Array<any> = useSelector((state:RootState) => state.topic);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,7 +18,7 @@ function TopicPage({match}:any) {
         dispatch(newTopic(res));
       })
       .catch((e:string) => console.error(e));
-  },[dispatch]);
+  },[dispatch, match.params.id]);
 
   const handleChange = (e:any) => {
     setReplyMessage(e.target.value);
@@ -25,15 +26,16 @@ function TopicPage({match}:any) {
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    service.createPost({content:replyMessage, TopicId:match.params.id})
+    service.createPost({content:replyMessage, TopicId:match.params.id, AccountId:loginData.id})
       .catch((e:string) => console.error(e));
   }
 
   return (
     <div>
       <div className='topicStarter'>
-        <h1>{topicData[0].title}</h1>
-        <p>{topicData[0].content}</p>
+        {topicData.length?<><h1>{topicData[0].title}</h1>
+        <p>{topicData[0].content}</p></>:
+        <p>loading</p>}
       </div>
       {topicData[1]&&topicData[1].length?
         topicData[1].map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):

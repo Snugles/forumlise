@@ -18,14 +18,21 @@ const apiRequests = {
     .catch((e:string)=>console.error(e));
   },
   createTopic: (topic:any) => {
-    console.log('called')
     return fetch('http://localhost:3001/topics',{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(topic)})
       .then((results)=>results.json())
       .catch((e:string)=>console.error(e));
-  }
+  },
+  login: (payload:any) => {
+    return fetch('http://localhost:3001/accounts',{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)})
+      .then((results) =>results.json())
+      .catch((e:string)=>console.error(e));
+  },
 };
 
 export default apiRequests;

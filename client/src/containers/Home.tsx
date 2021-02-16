@@ -3,12 +3,16 @@ import service from '../service';
 import HomePageTopic from '../components/homePageTopic'
 import './styles/Home.css';
 import logo from './images/forumliseLogo.png';
+import {RootState} from '../redux/reducers';
+import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 function TopicPage() {
   const [topics, setTopics] = useState([{}]);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
+
+  const loginData:any = useSelector((state:RootState) => state.login);
 
   useEffect(() => {
     service.getTopicTitles()
@@ -26,16 +30,14 @@ function TopicPage() {
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    service.createTopic({content:newContent, title:newTitle})
+    service.createTopic({content:newContent, title:newTitle, AccountId: loginData.id})
       .catch((e:string) => console.error(e));
   }
 
   return (
     <div className='homeContainer'>
-      <div>
-        <img src={logo} alt="Forumlise Logo"/>
-      </div>
-      {Object.keys(topics[0]).length?
+      <img src={logo} alt="Forumlise Logo"/>
+      {topics&&topics[0]&&Object.keys(topics[0]).length?
         topics.map((topicData:any) => 
         <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>
           <HomePageTopic content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
