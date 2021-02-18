@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import service from '../service';
 import logo from './images/forumliseLogo.png';
-import {RootState} from '../redux/reducers';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {login} from '../redux/actions/loginActions';
 import {useHistory} from "react-router-dom";
 import './styles/Login.css';

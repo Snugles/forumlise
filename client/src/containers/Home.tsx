@@ -4,7 +4,7 @@ import HomePageTopic from '../components/homePageTopic'
 import './styles/Home.css';
 import logo from './images/forumliseLogo.png';
 import {RootState} from '../redux/reducers';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 function TopicPage() {
