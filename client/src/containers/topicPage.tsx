@@ -27,6 +27,10 @@ function TopicPage({match}:any) {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     service.createPost({content:replyMessage, TopicId:match.params.id, AccountId:loginData.id})
+      .then((res:any) => {
+        dispatch(newTopic([topicData[0],[...topicData[1],res]]));
+        setReplyMessage('');
+      })
       .catch((e:string) => console.error(e));
   }
 

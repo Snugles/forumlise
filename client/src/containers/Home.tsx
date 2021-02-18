@@ -31,6 +31,7 @@ function TopicPage() {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     service.createTopic({content:newContent, title:newTitle, AccountId: loginData.id})
+      .then((res:any) => setTopics([...topics, res]))
       .catch((e:string) => console.error(e));
   }
 
