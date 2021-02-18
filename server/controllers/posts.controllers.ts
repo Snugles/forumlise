@@ -21,15 +21,19 @@ exports.getAll = async (req:any, res:any) => {
 
 exports.postOne = async (req:any, res:any) => {
   try {
-    Topics.findOne({where: {id: req.body.TopicId}})
-      .then((topic:any)=>{
-        topic.createPost(req.body)
-          .then((data:Array<any>)=>{
-            res.status(201);
-            res.send(data);
-          });
-      })
-      .catch((e:string)=>console.error(e));
+    if (req.body.TopicId && req.body.content && req.body.AccountId) {
+      Topics.findOne({where: {id: req.body.TopicId}})
+        .then((topic:any)=>{
+          topic.createPost(req.body)
+            .then((data:Array<any>)=>{
+              res.status(201);
+              res.send(data);
+            });
+        })
+        .catch((e:string)=>console.error(e));
+    } else {
+      res.sendStatus(400);
+    }
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
