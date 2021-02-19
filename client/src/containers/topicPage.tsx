@@ -5,6 +5,7 @@ import './styles/topicPage.css';
 import {RootState} from '../redux/reducers';
 import {useSelector, useDispatch} from 'react-redux';
 import {newTopic} from '../redux/actions/topicActions';
+import Navbar from '../components/navbar'
 
 function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
@@ -36,6 +37,7 @@ function TopicPage({match}:any) {
 
   return (
     <div>
+      <Navbar/>
       <div className='topicStarter'>
         {topicData.length?<><h1>{topicData[0].title}</h1>
         <p>{topicData[0].content}</p></>:

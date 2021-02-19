@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import service from '../service';
 import HomePageTopic from '../components/homePageTopic'
+import Navbar from '../components/navbar'
 import './styles/Home.css';
 import logo from './images/forumliseLogo.png';
 import {RootState} from '../redux/reducers';
@@ -37,6 +38,7 @@ function TopicPage() {
 
   return (
     <div className='homeContainer'>
+      <Navbar/>
       <img src={logo} alt="Forumlise Logo"/>
       {topics&&topics[0]&&Object.keys(topics[0]).length?
         topics.map((topicData:any) => 
