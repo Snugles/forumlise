@@ -1,5 +1,7 @@
 .homeContainer{
-  margin: 20px;
+  justify-self: stretch;
+  flex: 1;
+  max-width:975px;
 }
 
 .homeForm{
@@ -24,4 +26,9 @@
   margin: 5px;
   margin-top: 0px;
   background-color: rgb(93, 250, 255);
+}
+
+.homeBanner{
+  max-width: 100%;
+  height: auto;
 }

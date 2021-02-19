@@ -39,7 +39,7 @@ function TopicPage() {
   return (
     <div className='homeContainer'>
       <Navbar/>
-      <img src={logo} alt="Forumlise Logo"/>
+      <img src={logo} alt="Forumlise Logo" className="homeBanner"/>
       {topics&&topics[0]&&Object.keys(topics[0]).length?
         topics.map((topicData:any) => 
         <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>

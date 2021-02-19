@@ -36,7 +36,7 @@ function TopicPage({match}:any) {
   }
 
   return (
-    <div>
+    <div className='topicContainer'>
       <Navbar/>
       <div className='topicStarter'>
         {topicData.length?<><h1>{topicData[0].title}</h1>
