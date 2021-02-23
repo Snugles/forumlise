@@ -39,6 +39,14 @@ const apiRequests = {
       .then((results) =>results.json())
       .catch((e:string)=>console.error(e));
   },
+  register: (payload:any) => {
+    return fetch('http://localhost:3001/accounts/register',{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)})
+      .then((results:any) =>results.json())
+      .catch((e:string)=>console.error(e));
+  },
 };
 
 export default apiRequests;

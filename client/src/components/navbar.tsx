@@ -18,7 +18,7 @@ const Navbar : React.FC = () => {
       {loginData?
         <button onClick={logoutFunc}>Logout</button>:
         <Link to={`/login`}>
-          <button>Login</button>
+          <button>Login/Register</button>
         </Link>}
     </div>
   );
