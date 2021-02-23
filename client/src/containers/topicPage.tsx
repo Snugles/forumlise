@@ -9,6 +9,7 @@ import Navbar from '../components/navbar'
 
 function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const loginData:any = useSelector((state:RootState) => state.login);
   const topicData:Array<any> = useSelector((state:RootState) => state.topic);
@@ -27,10 +28,17 @@ function TopicPage({match}:any) {
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
+    if (!replyMessage.length){
+      return setErrorMessage('Reply cannot be empty');
+    }
     service.createPost({content:replyMessage, TopicId:match.params.id, AccountId:loginData.id}, loginData.token)
       .then((res:any) => {
-        dispatch(newTopic([topicData[0],[...topicData[1],res]]));
-        setReplyMessage('');
+        if (res) {
+          dispatch(newTopic([topicData[0],[...topicData[1],res]]));
+          setReplyMessage('');
+        } else {
+          setErrorMessage('Could not submit reply, are you sure your logged in?');
+        }
       })
       .catch((e:string) => console.error(e));
   }
@@ -46,6 +54,7 @@ function TopicPage({match}:any) {
       {topicData[1]&&topicData[1].length?
         topicData[1].map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
         <p>No replies</p>}
+        <p className='topicError'>{errorMessage}</p>
       <form onSubmit = {handleSubmit} className='topicPageForm'>
         <label>Reply:</label>
         <textarea rows={8} value={replyMessage} onChange={handleChange} className='topicPageInput'></textarea>

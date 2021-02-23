@@ -12,6 +12,7 @@ function TopicPage() {
   const [topics, setTopics] = useState([{}]);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const loginData:any = useSelector((state:RootState) => state.login);
 
@@ -31,8 +32,17 @@ function TopicPage() {
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
+    if (!newTitle.length||!newContent.length){
+      return setErrorMessage(`Neither 'Title' nor 'Content' can be empty`);
+    }
     service.createTopic({content:newContent, title:newTitle, AccountId: loginData.id,}, loginData.token)
-      .then((res:any) => setTopics([...topics, res]))
+      .then((res:any) => {
+        if (res){
+          setTopics([...topics, res]);
+        } else {
+          setErrorMessage('Could not submit topic, are you sure your logged in?');
+        }
+      })
       .catch((e:string) => console.error(e));
   }
 
@@ -48,6 +58,7 @@ function TopicPage() {
         <p>No Topics</p>}
       <div className='homeFormContainer'>
         <h1>Create new topic</h1>
+        <p className='homeError'>{errorMessage}</p>
         <form onSubmit = {handleSubmit} className='homeForm'>
           <label>Title:</label>
           <textarea value={newTitle} onChange={handleChange} name='title' className='homeInput'></textarea>
