@@ -4,10 +4,13 @@ const apiRequests = {
       .then((results) =>results.json())
       .catch((e:string)=>console.error(e));
   },
-  createPost: (post:any) => {
+  createPost: (post:any, token:string) => {
     return fetch(`http://localhost:3001/posts`,{
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
       body: JSON.stringify(post)})
       .then((results)=>results.json())
       .catch((e:string)=>console.error(e));
@@ -17,10 +20,13 @@ const apiRequests = {
     .then((results) =>results.json())
     .catch((e:string)=>console.error(e));
   },
-  createTopic: (topic:any) => {
+  createTopic: (topic:any, token:string) => {
     return fetch('http://localhost:3001/topics',{
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
       body: JSON.stringify(topic)})
       .then((results)=>results.json())
       .catch((e:string)=>console.error(e));
