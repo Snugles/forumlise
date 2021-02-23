@@ -9,9 +9,9 @@ require('dotenv').config();
 
 routerMiddleWare.post('/accounts', accounts.login);
 routerMiddleWare.post('/accounts/register', accounts.createOne);
-routerMiddleWare.get('/topics', auth.authenticateJWT, topics.getAll);
+routerMiddleWare.get('/topics', topics.getAll);
 routerMiddleWare.post('/topics', auth.authenticateJWT, topics.postOne);
-routerMiddleWare.get('/posts/:id', auth.authenticateJWT, posts.getAll);
+routerMiddleWare.get('/posts/:id', posts.getAll);
 routerMiddleWare.post('/posts', auth.authenticateJWT, posts.postOne);
 
 module.exports = routerMiddleWare;

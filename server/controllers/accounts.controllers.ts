@@ -10,9 +10,10 @@ exports.login = async (req:any, res:any) => {
         .then((account:any)=>{
           if (req.body.password===account.password) {
             res.status(200);
-            res.send({token:
-              authentication.JWT.sign(
-                req.body.username, process.env.ACCESS_TOKEN_SECRET)});
+            res.send({token: authentication.JWT
+              .sign(req.body.username, process.env.ACCESS_TOKEN_SECRET),
+            id: account.id,
+            });
           } else {
             res.status(200);
             res.send({accepted: false});
