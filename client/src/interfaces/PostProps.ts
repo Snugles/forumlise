@@ -1,6 +1,7 @@
 interface PostProps {
   content:string,
   timestamp:string,
-  key:number
+  key:number,
+  username:string
 }
 export default PostProps;

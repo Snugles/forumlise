@@ -30,3 +30,8 @@
 .topicError{
   color:red;
 }
+
+.topicPageHeaderUser{
+  font-size: 12px;
+  align-self: flex-start;
+}

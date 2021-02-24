@@ -47,12 +47,17 @@ function TopicPage({match}:any) {
     <div className='topicContainer'>
       <Navbar/>
       <div className='topicStarter'>
-        {topicData.length?<><h1>{topicData[0].title}</h1>
-        <p>{topicData[0].content}</p></>:
+        {topicData.length?<div style={{
+          display:'flex',
+          flexDirection:'column'
+          }}>
+        <h1 className='topicPageHeaderUser'>User: {topicData[0].AccountName}</h1>
+        <h1>{topicData[0].title}</h1>
+        <p>{topicData[0].content}</p></div>:
         <p>loading</p>}
       </div>
       {topicData[1]&&topicData[1].length?
-        topicData[1].map((postData:any) => <Post content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
+        topicData[1].map((postData:any) => <Post username={postData.AccountName} content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
         <p>No replies</p>}
         <p className='topicError'>{errorMessage}</p>
       <form onSubmit = {handleSubmit} className='topicPageForm'>

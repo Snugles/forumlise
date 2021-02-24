@@ -2,6 +2,7 @@ interface homepageTopicProps {
   content:string,
   title:string,
   timestamp:string,
-  key:number
+  key:number,
+  username:string
 }
 export default homepageTopicProps;

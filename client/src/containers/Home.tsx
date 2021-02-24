@@ -53,7 +53,7 @@ function TopicPage() {
       {topics&&topics[0]&&Object.keys(topics[0]).length?
         topics.map((topicData:any) => 
         <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>
-          <HomePageTopic content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
+          <HomePageTopic username={topicData.AccountName} content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
         </Link>):
         <p>No Topics</p>}
       <div className='homeFormContainer'>
