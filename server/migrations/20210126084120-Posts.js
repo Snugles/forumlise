@@ -29,6 +29,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      AccountName: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
     });
     await queryInterface.createTable('Topics', {
       id: {
@@ -56,6 +60,10 @@ module.exports = {
       AccountId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+      },
+      AccountName: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
     });
     await queryInterface.createTable('Accounts', {

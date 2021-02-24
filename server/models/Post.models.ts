@@ -7,6 +7,9 @@ module.exports = (sequelize:any, DataTypes:any) => {
     TopicId: {
       type: DataTypes.INTEGER,
     },
+    AccountName: {
+      type: DataTypes.STRING,
+    },
   }, {});
   Post.associate = function(models:any) {
     Post.belongsTo(models.Topic);

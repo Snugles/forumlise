@@ -8,6 +8,9 @@ module.exports = (sequelize:any, DataTypes:any) => {
       title: {
         type: DataTypes.STRING,
       },
+      AccountName: {
+        type: DataTypes.STRING,
+      },
     }, {});
   Topic.associate = function(models:any) {
     Topic.hasMany(models.Post);
