@@ -5,6 +5,8 @@ import {useDispatch} from 'react-redux';
 import {login} from '../redux/actions/loginActions';
 import {useHistory} from "react-router-dom";
 import './styles/Login.css';
+import LoginDataTypes from '../interfaces/LoginDataTypes';
+
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -32,7 +34,7 @@ function Login() {
       if (!password.length||!username.length) return setErrorMessage('Please fill all fields');
 
       service.login({username:username, password:password})
-        .then((res:any)=>{
+        .then((res:LoginDataTypes)=>{
           if (res) {
             dispatch(login(res));
             history.push('/');
@@ -47,7 +49,7 @@ function Login() {
       if (!password.length||!username.length) return setErrorMessage('Please fill all fields');
       
       service.register({username:username, password:password})
-      .then((res:any)=>{
+      .then((res:LoginDataTypes)=>{
         if (res) {
           setLoginMode(true);
           setErrorMessage('Account registered please login');

@@ -5,13 +5,15 @@ import './styles/topicPage.css';
 import {RootState} from '../redux/reducers';
 import {useSelector, useDispatch} from 'react-redux';
 import {newTopic} from '../redux/actions/topicActions';
-import Navbar from '../components/navbar'
+import Navbar from '../components/navbar';
+import LoginDataTypes from '../interfaces/LoginDataTypes';
+import singlePostData from '../interfaces/singlePostData';
 
 function TopicPage({match}:any) {
   const [replyMessage, setReplyMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const loginData:any = useSelector((state:RootState) => state.login);
+  const loginData:LoginDataTypes = useSelector((state:RootState) => state.login);
   const topicData:Array<any> = useSelector((state:RootState) => state.topic);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +34,7 @@ function TopicPage({match}:any) {
       return setErrorMessage('Reply cannot be empty');
     }
     service.createPost({content:replyMessage, TopicId:match.params.id, AccountId:loginData.id}, loginData.token)
-      .then((res:any) => {
+      .then((res:singlePostData) => {
         if (res) {
           dispatch(newTopic([topicData[0],[...topicData[1],res]]));
           setReplyMessage('');
@@ -57,7 +59,7 @@ function TopicPage({match}:any) {
         <p>loading</p>}
       </div>
       {topicData[1]&&topicData[1].length?
-        topicData[1].map((postData:any) => <Post username={postData.AccountName} content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
+        topicData[1].map((postData:singlePostData) => <Post username={postData.AccountName} content={postData.content} timestamp={postData.createdAt} key={postData.id}/>):
         <p>No replies</p>}
         <p className='topicError'>{errorMessage}</p>
       <form onSubmit = {handleSubmit} className='topicPageForm'>

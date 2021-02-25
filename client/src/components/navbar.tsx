@@ -5,9 +5,10 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logout} from '../redux/actions/loginActions';
 import {useDispatch} from 'react-redux';
+import LoginDataTypes from '../interfaces/LoginDataTypes';
 
 const Navbar : React.FC = () => {
-  const loginData:any = useSelector((state:RootState) => state.login);
+  const loginData:LoginDataTypes = useSelector((state:RootState) => state.login);
   const dispatch = useDispatch();
 
   const logoutFunc = () => {

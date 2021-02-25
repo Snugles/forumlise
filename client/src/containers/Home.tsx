@@ -7,18 +7,26 @@ import logo from './images/forumliseLogo.png';
 import {RootState} from '../redux/reducers';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import LoginDataTypes from '../interfaces/LoginDataTypes';
+import singleTopicData from '../interfaces/singleTopicData';
 
 function TopicPage() {
-  const [topics, setTopics] = useState([{}]);
+  const [topics, setTopics]:[Array<singleTopicData>, Function] = useState([{
+    AccountName:'',
+    content:'',
+    title:'',
+    createdAt:'',
+    id:0
+  }]);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const loginData:any = useSelector((state:RootState) => state.login);
+  const loginData:LoginDataTypes = useSelector((state:RootState) => state.login);
 
   useEffect(() => {
     service.getTopicTitles()
-      .then((res:Array<Object>) => setTopics((res)))
+      .then((res:Array<LoginDataTypes>) => setTopics((res)))
       .catch((e:string) => console.error(e));
   },[]);
 
@@ -36,7 +44,7 @@ function TopicPage() {
       return setErrorMessage(`Neither 'Title' nor 'Content' can be empty`);
     }
     service.createTopic({content:newContent, title:newTitle, AccountId: loginData.id,}, loginData.token)
-      .then((res:any) => {
+      .then((res:singleTopicData) => {
         if (res){
           setTopics([...topics, res]);
         } else {
@@ -50,8 +58,8 @@ function TopicPage() {
     <div className='homeContainer'>
       <Navbar/>
       <img src={logo} alt="Forumlise Logo" className="homeBanner"/>
-      {topics&&topics[0]&&Object.keys(topics[0]).length?
-        topics.map((topicData:any) => 
+      {topics&&topics[0].AccountName.length&&Object.keys(topics[0]).length?
+        topics.map((topicData:singleTopicData) => 
         <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>
           <HomePageTopic username={topicData.AccountName} content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
         </Link>):
