@@ -3,7 +3,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
   const Topic = sequelize.define('Topic',
     {
       content: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1000),
       },
       title: {
         type: DataTypes.STRING,
