@@ -1,11 +1,11 @@
 # forumlise
-A fairly general purpose forum based around topic threads built for typescript, redux and sql database practice.
+A fairly general purpose forum based around topic threads built for typescript, redux and SQL database practice.
 
 ### Features
 ![Accounts](./READMEImages/login.png)
 User accounts used to assign both users and replies to individual users. Login and register screens both availible on the client.
 
-![Home](./READMEImages/home.png)
+![Home](./READMEImages/homepage.png)
 Home page lists all topics from all users allowing easy viewing, also allows users to post new topics as long as they are logged in.
 
 ![Thread](./READMEImages/thread.png)
