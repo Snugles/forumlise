@@ -58,7 +58,7 @@ function TopicPage() {
     <div className='homeContainer'>
       <Navbar/>
       <img src={logo} alt="Forumlise Logo" className="homeBanner"/>
-      {topics&&topics[0].AccountName.length&&Object.keys(topics[0]).length?
+      {topics&&topics[0]&&topics[0].AccountName.length&&Object.keys(topics[0]).length?
         topics.map((topicData:singleTopicData) => 
         <Link to={`/topic/${topicData.id}`} style={{textDecoration: 'none', color:'black'}} key={topicData.id}>
           <HomePageTopic username={topicData.AccountName} content={topicData.content} title={topicData.title} timestamp={topicData.createdAt} key={topicData.id}/>
